@@ -1,0 +1,61 @@
+spring:
+  profiles:
+    active: dev
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+    active: test
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+mybatis-plus:
+  # mapper
+  mapper-locations: classpath:mybatis/**/*Mapper.xml
+  # entity
+  typeAliasesPackage: ${package}.**.entity.*
+  #configuration:
+  #    #使用驼峰法映射属性
+  #    map-underscore-to-camel-case: true
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 0
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 2
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    refresh-mapper: true
+    #数据库大写下划线转换
+    #capital-mode: true
+    #序列接口实现类配置
+    #key-generator: com.baomidou.springboot.xxx
+    #逻辑删除配置
+    #logic-delete-value: 0
+    #logic-not-delete-value: 1
+    #自定义填充策略接口实现
+    #meta-object-handler: com.baomidou.springboot.xxx
+    #自定义SQL注入器
+    #sql-injector: com.baomidou.springboot.xxx
+server: 
+  tomcat: 
+    accesslog: 
+      buffered: true # 缓存日志定期刷新输出（建议设置为true，否则当有请求立即打印日志对服务的响应会有影响）
+      directory: logs # 日志文件路径，可以是相对于tomcat的路径也可是绝对路径
+      enabled: true # 是否开启访问日志
+      file-date-format: .yyyy-MM-dd # 放在日志文件名中的日期格式
+      pattern: common # 日志格式，在下面详解
+      prefix: access_log # 日志文件名前缀
+      rename-on-rotate: false # 推迟在文件名中加入日期标记，直到日志分割时
+      request-attributes-enabled: false # 为请求使用的IP地址，主机名，协议和端口设置请求属性
+      rotate: true # 是否启用访问日志分割
+      suffix: .log # 日志名后缀
+
+jasypt:
+  encryptor:
+    password: erp

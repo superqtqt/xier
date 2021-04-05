@@ -1,0 +1,68 @@
+logging:
+  level:
+    root: debug
+server:
+  compression:
+    enabled: true
+    mime-types: application/json
+
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;MODE=MYSQL;IGNORECASE=TRUE;
+    username: admin
+    password: admin
+    initialSize: 1
+    minIdle: 3
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 30000
+    testWhileIdle: true
+    validationQuery: select 'x' from dual
+    testOnBorrow: false
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,slf4j
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    # 合并多个DruidDataSource的监控数据
+    #useGlobalDataSourceStat: true
+    initialization-mode: always
+    schema: classpath:h2.sql
+  flyway:
+    # 启用或禁用 flyway
+    enabled: false
+    # flyway 的 clean 命令会删除指定 schema 下的所有 table, 生产务必禁掉。这个默认值是 false 理论上作为默认配置是不科学的。
+    clean-disabled: false
+    # SQL 脚本的目录,多个路径使用逗号分隔 默认值 classpath:db/migration
+    locations: classpath:db/migration
+    #  metadata 版本控制信息表 默认 flyway_schema_history
+    table: flyway_schema_history
+    # 如果没有 flyway_schema_history 这个 metadata 表， 在执行 flyway migrate 命令之前, 必须先执行 flyway baseline 命令
+    # 设置为 true 后 flyway 将在需要 baseline 的时候, 自动执行一次 baseline。
+    baseline-on-migrate: false
+    # 指定 baseline 的版本号,默认值为 1, 低于该版本号的 SQL 文件, migrate 时会被忽略
+    baseline-version: 1
+    # 字符编码 默认 UTF-8
+    encoding: UTF-8
+    # 是否允许不按顺序迁移 开发建议 true  生产建议 false
+    out-of-order: false
+    # 执行迁移时是否自动调用验证   当你的 版本不符合逻辑 比如 你先执行了 DML 而没有 对应的DDL 会抛出异常
+    validate-on-migrate: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+  devtools:
+    restart:
+      enabled: true
