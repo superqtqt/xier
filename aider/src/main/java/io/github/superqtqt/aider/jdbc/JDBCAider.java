@@ -29,13 +29,13 @@ public class JDBCAider {
     /**
      * 批量插入数据
      *
-     * @param con
+     * @param con 连接
      * @param tableName    表名
      * @param columns      列名
      * @param data         数据
      * @param bathSize     一批插入量
      * @param dataOperator 从数据中读取每个字段的值
-     * @param <T>
+     * @param <T> 插入的数据
      */
     public static <T> void bathInsert(Connection con, String tableName, String[] columns, List<T> data, int bathSize, DataOperator<T> dataOperator) {
         StringBuilder sql = new StringBuilder("insert into " + tableName + "(");
@@ -134,16 +134,6 @@ public class JDBCAider {
         }
     };
 
-    /**
-     * 将查询转换成类
-     *
-     * @param con
-     * @param sql
-     * @param params
-     * @param cl     转换规则: user_name ->userName
-     * @param <T>
-     * @return
-     */
     @SneakyThrows
     public static <T> List<T> query(Connection con, String sql, Object[] params, Class<T> cl) {
         ResultSet rs = query(con, sql, params);

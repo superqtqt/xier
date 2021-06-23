@@ -15,22 +15,13 @@ public final class CollectionAider {
     /**
      * 判断当前是否为空
      *
-     * @param collection
-     * @return
+     * @param collection 集合
+     * @return boolean
      */
     public static boolean isNullOrEmpty(Collection collection) {
         return collection == null || collection.size() == 0;
     }
 
-    /**
-     * 取两个集合的差集
-     *
-     * @param source
-     * @param target
-     * @param <T>
-     * @param <E>
-     * @return
-     */
     public static <T extends Collection<E>, E> List<E> diff(T source, T target) {
         List<E> result = new ArrayList<>();
         Set<E> set = new HashSet<>(target);

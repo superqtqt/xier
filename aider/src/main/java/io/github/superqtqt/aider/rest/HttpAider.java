@@ -28,12 +28,7 @@ import java.time.Duration;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j
 public class HttpAider {
-    /**
-     * 实例化一个连接池
-     *
-     * @param poolSize
-     * @return
-     */
+
     public static PoolingHttpClientConnectionManager instanceManager(int poolSize) {
         PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
         // 设置最大连接数
@@ -43,23 +38,10 @@ public class HttpAider {
         return connManager;
     }
 
-    /**
-     * 实例化一个client端
-     *
-     * @param timeOut
-     * @return
-     */
     public static CloseableHttpClient instanceClient(Duration timeOut) {
         return instanceClient(timeOut, null);
     }
 
-    /**
-     * 实例化一个client端
-     *
-     * @param timeOut
-     * @param manager
-     * @return
-     */
     public static CloseableHttpClient instanceClient(Duration timeOut, PoolingHttpClientConnectionManager manager) {
         int _timeOut = timeOut == null ? 60 : Long.valueOf(timeOut.toMillis()).intValue();
         // 创建Http请求配置参数
@@ -121,11 +103,6 @@ public class HttpAider {
 
     }
 
-    /**
-     * 关闭一个client
-     *
-     * @param client
-     */
     public static void close(CloseableHttpClient client) {
         if (client != null) {
             try {

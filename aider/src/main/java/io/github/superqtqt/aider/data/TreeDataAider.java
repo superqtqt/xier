@@ -27,9 +27,9 @@ public final class TreeDataAider {
      * @param pIdSupplier   获得父ID的方法
      * @param test          测试值是否为空
      * @param childSupplier 获得子节点方法，如果没有值则将转为空
-     * @param <T>
-     * @param <K>
-     * @return
+     * @param <T> 类型
+     * @param <K> 类型
+     * @return 返回
      */
     public static <T, K> List<T> toTree(List<T> data, Function<T, K> idSupplier, Function<T, K> pIdSupplier, Predicate<K> test,
                                         Function<T, Collection<T>> childSupplier) {

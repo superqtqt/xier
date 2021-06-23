@@ -10,8 +10,8 @@ public class ShaAider {
     /**
      * 传入文本内容，返回 SHA-256 串
      *
-     * @param strText
-     * @return
+     * @param strText 加密文本
+     * @return 密文
      */
     public static String sha256(final String strText) {
         return sha(strText, "SHA-256");
@@ -20,8 +20,8 @@ public class ShaAider {
     /**
      * 传入文本内容，返回 SHA-512 串
      *
-     * @param strText
-     * @return
+     * @param strText 加密文本
+     * @return 密文
      */
     public static String sha512(final String strText) {
         return sha(strText, "SHA-512");
