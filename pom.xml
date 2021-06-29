@@ -53,7 +53,8 @@
         <http.client.version>4.5.12</http.client.version>
         <jackson.version>2.10.3</jackson.version>
         <mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
-
+        <hutool-poi.version>5.6.7</hutool-poi.version>
+        <poi-ooxml.version>5.0.0</poi-ooxml.version>
     </properties>
 
     <dependencyManagement>
@@ -94,6 +95,16 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-poi</artifactId>
+                <version>${hutool-poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi-ooxml.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
